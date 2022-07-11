@@ -16,7 +16,7 @@ I chose to develop this engine using Python 3.9 and the Flask framework for the 
 ## Local setup
 ### Getting started
 ```shell
-cd /
+cd ~
 
 # Cloning the repository
 git clone git@github.com:2904nando/score-calculation.git
@@ -41,7 +41,7 @@ pytest tests
 ```
 ### Running the App
 ```shell
-python3 -m venv score-calculation-venv
+python3 app.py
 ```
 ## Usage considerations
 When the app executes, it spawns a localhost flask server on port 5000. The main function `calculate-scores` can be called through the `/calculate-scores` route.
@@ -56,6 +56,22 @@ When the app executes, it spawns a localhost flask server on port 5000. The main
 |house|No|Object|Object with a single `ownership_status` attribute, which can be "owned" or "mortgaged".|
 |vehicle|No|Object|Object with a single `year` attribute containing a positive Integer corresponding the year the vehicle was manufactured.|
 
+*Note: Any field not following the validation rules listed above will throw an `Invalid Input!` Exception with Status Code `500`.*
+### Testing the App
+Tests can be done using Postman or any other Http Client.
+You must send a POST request to `http://localhost:5000/calculate-scores`, providing a JSON body containing the necessary fields listed above.
+You can also run the following CURL command:
+```SHELL
+curl -XPOST -H "Content-type: application/json" -d '{
+  "age": 35,
+  "dependents": 2,
+  "house": {"ownership_status": "owned"},
+  "income": 0,
+  "marital_status": "married",
+  "risk_questions": [0, 1, 0],
+  "vehicle": {"year": 2018}
+}' 'http://localhost:5000/calculate-scores'
+```
 ## Technical decisions
 ### Tests
 I decided to use pytest as my prefered testing framework for its simplicity and ease of use.
