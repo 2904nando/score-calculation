@@ -1,0 +1,34 @@
+custom:
+  domainName: api.origin.com
+
+provider:
+  name: aws
+  runtime: python3.8
+  stage: 'master'
+  region: 'us-west-2'
+  versionFunctions: false
+  logs:
+    restApi: 
+      accessLogging: true
+      executionLogging: true
+      level: INFO
+      fullExecutionData: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - logs:CreateLogGroup
+        - logs:CreateLogStream
+        - logs:PutLogEvents
+        - lambda:InvokeFunction
+      Resource: '*'
+
+functions:
+  vtexGiftCardsSearch:
+    timeout: 300
+    handler: functions/insurance_handler.calculate_scores
+    events:
+      - http:
+          path: /calculate-scores
+          method: post
+          private: false
+          cors: true

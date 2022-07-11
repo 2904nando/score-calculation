@@ -138,7 +138,8 @@ class UserInput:
             return True
         vehicleYear = self.vehicle.get(UserInput.FIELDS_AND_VALUES.VEHICLE_YEAR_FIELD, None)
         if (isinstance(self.vehicle, dict) and 
-            isinstance(vehicleYear, int)
+            isinstance(vehicleYear, int) and
+            vehicleYear > 0
         ):
             return True
         return False
