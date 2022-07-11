@@ -8,10 +8,11 @@ I chose to develop this engine using Python 3.9 and the Flask framework for the 
 |-|-|
 |/|Main directory containing the project itself.|
 |/functions|This directory holds the functions available to run the engine.|
+|/lib/models|This directory holds the classes to support the app's functionalities.|
+|/configs|This directory contains configurations to support the defined Business Rules.|
 |/tests|This directory has all the tests logics.|
 |/tests/mocks|This directory holds mock files, the base data to run the tests.|
 |/tests/utils|This directory holds testing utils, such as pytest fixtures.|
-|/lib/models|This directory holds the classes to support the app's functionalities.|
 ## Local setup
 ### Getting started
 ```shell
@@ -63,8 +64,13 @@ I also created a base for a testing mechanism based on dynamic fixtures. The fix
 The test methods using this fixture can have dynamic parameters sent in order to search the correct paths and get the files which will be used as input for the function, as well as the expected outputs for asserting.
 ### Configs
 In the `/configs` directory, you can find a file with a Dictionary containing score-calculating methods and their impact on Insurance scores.
-
 I chose to create this logic in order to accomodate and facilitate maintenance in the future, as business requirements for the Score Calculations might change.
+
+In the event of a change in Business Rules:
+|Action|Modification|
+|-|-|
+|Existing Business Rule - Change in Score Impact + Ineligibility|Only modifying the configs on `/config` to accommodate the changes.|
+|New Business Rule|Creating new node on `/config` + Implementing calculated *property* **with the same name as the created node** on `/lib/models/user_input.py`.|
 ### Architecture
 For simplicity sake for this example exercise, as explained in the summary, I chose to develop the webserver using Flask.
 For a production environment, I would recommend using a Cloud Service, such as AWS and deploy the necessary Resources using the Serverless Framework, following IaC practices.
