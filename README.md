@@ -70,7 +70,9 @@ For simplicity sake for this example exercise, as explained in the summary, I ch
 For a production environment, I would recommend using a Cloud Service, such as AWS and deploy the necessary Resources using the Serverless Framework, following IaC practices.
 
 Here is an overview of what this Architecture should look like:
-![Suggested Architecture][improvements/suggested_architecture.png]
+
+![Suggested Architecture](improvements/suggested_architecture.png)
 
 And this architecture could be deployed using the Serverless Framework following the basic boilerplate describe in the following file:
+
 [Suggested Serverless](improvements/suggested_serverless.yml)
