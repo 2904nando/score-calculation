@@ -1,6 +1,5 @@
 import pytest
 from functions import insurance_handler as InsuranceHandler
-import json
 
 class TestGeneralScenarios():
     @pytest.mark.parametrize('mock_loader_params', [

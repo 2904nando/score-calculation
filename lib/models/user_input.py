@@ -125,9 +125,10 @@ class UserInput:
     def _validate_house_field(self):
         if not self.house:
             return True
+        if not isinstance(self.house, dict):
+            return False
         houseStatus = self.house.get(UserInput.FIELDS_AND_VALUES.HOUSE_OWNERSHIP_STATUS_FIELD, None)
-        if (isinstance(self.house, dict) and 
-            isinstance(houseStatus, str) and
+        if (isinstance(houseStatus, str) and
             houseStatus in UserInput.FIELDS_AND_VALUES.HOUSE_STATUS_VALUES
         ):
             return True
@@ -136,9 +137,10 @@ class UserInput:
     def _validate_vehicle_field(self):
         if not self.vehicle:
             return True
+        if not isinstance(self.vehicle, dict):
+            return False
         vehicleYear = self.vehicle.get(UserInput.FIELDS_AND_VALUES.VEHICLE_YEAR_FIELD, None)
-        if (isinstance(self.vehicle, dict) and 
-            isinstance(vehicleYear, int) and
+        if (isinstance(vehicleYear, int) and
             vehicleYear > 0
         ):
             return True

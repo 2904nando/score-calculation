@@ -19,9 +19,7 @@ class Insurance:
         self.ineligibleStatus = True
     
     def addPoints(self, points: int):
-        if self.ineligibleStatus:
-            return
-        else:
+        if not self.ineligibleStatus:
             self.score += points
 
     def calculate_score(self):
